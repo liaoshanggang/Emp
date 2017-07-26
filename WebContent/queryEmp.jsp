@@ -70,7 +70,7 @@
 						<td><c:out value="${emp.empno }" /></td>
 						<td><c:out value="${emp.ename }" /></td>
 						<td><c:out value="${emp.job }" /></td>
-						<td><c:out value="${emp.empno }" /></td>
+						<td><c:out value="${emp.mgr }" /></td>
 						<td><c:out value="${emp.hiredate }" /></td>
 						<td><c:out value="${emp.sal }" /></td>
 						<td><c:out value="${emp.comm }" /></td>
