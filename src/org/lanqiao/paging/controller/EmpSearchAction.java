@@ -18,7 +18,7 @@ public class EmpSearchAction extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		System.out.println("--------get----------");
+		//System.out.println("--------get----------");
 		
 		//=================模拟从后台获取数据库=================
 //		List<EmpVo> listVO = new ArrayList<EmpVo>();
@@ -54,7 +54,7 @@ public class EmpSearchAction extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		System.out.println("--------post----------");
+		//System.out.println("--------post----------");
 		this.doGet(req, resp);
 	}
 	
