@@ -11,11 +11,12 @@ import java.util.List;
 import org.lanqiao.paging.dao.DeptDao;
 import org.lanqiao.paging.entity.Dept;
 import org.lanqiao.paging.entity.Emp;
+import org.lanqiao.paging.util.DBUtil;
 
 public class DeptDaoImpl implements DeptDao {
-	public static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
+	/*public static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
 	public static final String USER = "scott";
-	public static final String PASSWORD = "tiger";
+	public static final String PASSWORD = "tiger";*/
 
 	public Emp select(int deptno, int empno) {
 		return null;
@@ -32,11 +33,10 @@ public class DeptDaoImpl implements DeptDao {
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
 		// 加载驱动
+		conn = DBUtil.getConn();
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
 
 			// 获得连接
-			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
 			// 创建语句
 			pstat = conn.prepareStatement(DEPT_SQL_ALL);
@@ -55,8 +55,6 @@ public class DeptDaoImpl implements DeptDao {
 				dept.setLoc(rst.getString("LOC"));
 				elist.add(dept);
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -90,11 +88,10 @@ public class DeptDaoImpl implements DeptDao {
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
 		// 加载驱动
+		conn = DBUtil.getConn();
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
 
 			// 获得连接
-			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
 			// 创建语句
 			pstat = conn.prepareStatement(DEPT_SQL_SELECT);
@@ -112,8 +109,6 @@ public class DeptDaoImpl implements DeptDao {
 				dept.setDname(rst.getString("DNAME"));
 				dept.setLoc(rst.getString("LOC"));
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

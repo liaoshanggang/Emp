@@ -10,11 +10,12 @@ import java.util.List;
 
 import org.lanqiao.paging.dao.EmpDao;
 import org.lanqiao.paging.entity.Emp;
+import org.lanqiao.paging.util.DBUtil;
 
 public class EmpDaoImpl implements EmpDao {
-	public static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
+	/*public static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
 	public static final String USER = "scott";
-	public static final String PASSWORD = "tiger";
+	public static final String PASSWORD = "tiger";*/
 
 	public Emp select(int deptno, int empno) {
 		return null;
@@ -30,12 +31,9 @@ public class EmpDaoImpl implements EmpDao {
 		Connection conn = null;
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
-		// 加载驱动
+		conn = DBUtil.getConn();
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
-
 			// 获得连接
-			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
 			// 创建语句
 			pstat = conn.prepareStatement(EMP_SQL_ALL);
@@ -59,8 +57,6 @@ public class EmpDaoImpl implements EmpDao {
 				emp.setDeptno(rst.getInt("deptno"));
 				elist.add(emp);
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -94,11 +90,10 @@ public class EmpDaoImpl implements EmpDao {
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
 		// 加载驱动
+		conn = DBUtil.getConn();
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
 
 			// 获得连接
-			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
 			// 创建语句
 			pstat = conn.prepareStatement(EMP_SQL_SELECT);
@@ -121,8 +116,6 @@ public class EmpDaoImpl implements EmpDao {
 				emp.setComm(rst.getDouble("comm"));
 				emp.setDeptno(rst.getInt("deptno"));
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -157,11 +150,10 @@ public class EmpDaoImpl implements EmpDao {
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
 		// 加载驱动
+		conn = DBUtil.getConn();
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
 
 			// 获得连接
-			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
 			// 创建语句
 			pstat = conn.prepareStatement(EMP_SQL_PAGE);
@@ -187,8 +179,6 @@ public class EmpDaoImpl implements EmpDao {
 				emp.setDeptno(rst.getInt("deptno"));
 				elist.add(emp);
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
