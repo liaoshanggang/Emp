@@ -48,7 +48,7 @@ public class EmpSearchAction extends HttpServlet {
 		req.setAttribute("listVO", listVO);
 		
 		//请求转发
-		req.getRequestDispatcher("queryEmp.jsp").forward(req, resp);
+		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}
 
 	@Override

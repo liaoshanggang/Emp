@@ -9,9 +9,8 @@ import java.util.List;
 
 import org.lanqiao.paging.dao.EmpDao;
 import org.lanqiao.paging.entity.Emp;
-import org.lanqiao.paging.util.DBUtil;
 
-public class EmpDaoImpl implements EmpDao {
+public class EmpDaoImpl extends AbstractDao implements EmpDao {
 
 	@Override
 	public List<Emp> select(int pageSize, int currentPage) {
@@ -20,7 +19,8 @@ public class EmpDaoImpl implements EmpDao {
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
 		// 加载驱动
-		conn = DBUtil.getConn();
+		//conn = DBUtil.getConn();
+		conn = getConn();
 		try {
 
 			// 获得连接
@@ -52,20 +52,7 @@ public class EmpDaoImpl implements EmpDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-				if (pstat != null) {
-					pstat.close();
-				}
-				if (rst != null) {
-					rst.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
+			this.close(conn, pstat, rst);
 		}
 		return elist;
 	}
@@ -81,7 +68,8 @@ public class EmpDaoImpl implements EmpDao {
 		Connection conn = null;
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
-		conn = DBUtil.getConn();
+		//conn = DBUtil.getConn();
+		conn = getConn();
 		try {
 			// 获得连接
 
@@ -110,20 +98,7 @@ public class EmpDaoImpl implements EmpDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-				if (pstat != null) {
-					pstat.close();
-				}
-				if (rst != null) {
-					rst.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
+			this.close(conn, pstat, rst);
 		}
 		return elist;
 	}
@@ -135,7 +110,7 @@ public class EmpDaoImpl implements EmpDao {
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
 		// 加载驱动
-		conn = DBUtil.getConn();
+		conn = getConn();
 		try {
 
 			// 获得连接
@@ -164,20 +139,7 @@ public class EmpDaoImpl implements EmpDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-				if (pstat != null) {
-					pstat.close();
-				}
-				if (rst != null) {
-					rst.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
+			this.close(conn, pstat, rst);
 		}
 		return emp;
 	}

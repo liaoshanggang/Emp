@@ -9,9 +9,8 @@ import java.util.List;
 
 import org.lanqiao.paging.dao.DeptDao;
 import org.lanqiao.paging.entity.Dept;
-import org.lanqiao.paging.util.DBUtil;
 
-public class DeptDaoImpl implements DeptDao {
+public class DeptDaoImpl extends AbstractDao implements DeptDao {
 
 	@Override
 	public List<Dept> select(int pageSize, int currentPage) {
@@ -30,7 +29,7 @@ public class DeptDaoImpl implements DeptDao {
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
 		// 加载驱动
-		conn = DBUtil.getConn();
+		conn = getConn();
 		try {
 
 			// 获得连接
@@ -55,20 +54,7 @@ public class DeptDaoImpl implements DeptDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-				if (pstat != null) {
-					pstat.close();
-				}
-				if (rst != null) {
-					rst.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
+			this.close(conn, pstat, rst);
 		}
 		return elist;
 	}
@@ -80,7 +66,7 @@ public class DeptDaoImpl implements DeptDao {
 		PreparedStatement pstat = null;
 		ResultSet rst = null;
 		// 加载驱动
-		conn = DBUtil.getConn();
+		conn = getConn();
 		try {
 
 			// 获得连接
@@ -104,20 +90,7 @@ public class DeptDaoImpl implements DeptDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-				if (pstat != null) {
-					pstat.close();
-				}
-				if (rst != null) {
-					rst.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
+			this.close(conn, pstat, rst);
 		}
 		return dept;
 	}
