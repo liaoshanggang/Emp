@@ -1,7 +1,6 @@
 package org.lanqiao.paging.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,23 +9,21 @@ import java.util.List;
 
 import org.lanqiao.paging.dao.DeptDao;
 import org.lanqiao.paging.entity.Dept;
-import org.lanqiao.paging.entity.Emp;
 import org.lanqiao.paging.util.DBUtil;
 
 public class DeptDaoImpl implements DeptDao {
-	/*public static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
-	public static final String USER = "scott";
-	public static final String PASSWORD = "tiger";*/
 
-	public Emp select(int deptno, int empno) {
+	@Override
+	public List<Dept> select(int pageSize, int currentPage) {
 		return null;
 	}
 
-	/**
-	 * 获得所有部门信息
-	 * 
-	 * @return
-	 */
+	@Override
+	public List<Dept> select(int pageSize, int currentPage, Dept obj) {
+		return null;
+	}
+
+	@Override
 	public List<Dept> select() {
 		List<Dept> elist = null;
 		Connection conn = null;
@@ -76,13 +73,8 @@ public class DeptDaoImpl implements DeptDao {
 		return elist;
 	}
 
-	/**
-	 * 获得指定员工部门的信息
-	 * 
-	 * @param deptno
-	 * @return
-	 */
-	public Dept select(int deptno) {
+	@Override
+	public Dept select(Integer id) {
 		Dept dept = null;
 		Connection conn = null;
 		PreparedStatement pstat = null;
@@ -97,7 +89,7 @@ public class DeptDaoImpl implements DeptDao {
 			pstat = conn.prepareStatement(DEPT_SQL_SELECT);
 
 			// 绑定变量
-			pstat.setInt(1, deptno);
+			pstat.setInt(1, id);
 
 			// 执行SQL
 			rst = pstat.executeQuery();
@@ -129,4 +121,30 @@ public class DeptDaoImpl implements DeptDao {
 		}
 		return dept;
 	}
+
+	@Override
+	public void insert(Dept t) {
+
+	}
+
+	@Override
+	public void delete() {
+
+	}
+
+	@Override
+	public void delete(Integer id) {
+
+	}
+
+	@Override
+	public void update(Dept t) {
+
+	}
+
+	@Override
+	public int count() {
+		return 0;
+	}
+
 }

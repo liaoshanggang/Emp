@@ -10,7 +10,8 @@ import java.util.Properties;
 public class DBUtil {
 	public static final String URL;
 	public static final String USER;
-	public static final String PASSWORD;                                                                                
+	public static final String PASSWORD;    
+	public static final String DRIVER; 
 	static {
 		InputStream inStream = DBUtil.class.getClassLoader()
 				.getResourceAsStream("org/lanqiao/paging/util/db.properties");
@@ -23,11 +24,13 @@ public class DBUtil {
 		URL = props.getProperty("URL");
 		USER = props.getProperty("USER");
 		PASSWORD = props.getProperty("PASSWORD");
+		DRIVER = props.getProperty("DRIVER");
+		
 	}
 
 	public static Connection getConn() {
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
+			Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
 			System.out.println("驱动程序未加载成功");
 		}

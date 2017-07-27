@@ -27,7 +27,7 @@ public class EmpService {
 	}
 
 	public List<EmpVo> query(int pageSize, int currentPage) {
-		List<Emp> eList = edao.select_page(pageSize, currentPage);
+		List<Emp> eList = edao.select(pageSize, currentPage);
 		List<EmpVo> evoList = new ArrayList<EmpVo>();
 		for (Emp emp : eList) {
 			EmpVo evo = new EmpVo();
