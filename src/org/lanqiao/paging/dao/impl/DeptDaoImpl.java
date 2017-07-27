@@ -1,8 +1,5 @@
 package org.lanqiao.paging.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +7,7 @@ import java.util.List;
 import org.lanqiao.paging.dao.DeptDao;
 import org.lanqiao.paging.entity.Dept;
 
-public class DeptDaoImpl extends AbstractDao implements DeptDao {
+public class DeptDaoImpl extends AbstractDao<Dept,Integer> implements DeptDao {
 
 	@Override
 	public List<Dept> select(int pageSize, int currentPage) {
@@ -25,9 +22,7 @@ public class DeptDaoImpl extends AbstractDao implements DeptDao {
 	@Override
 	public List<Dept> select() {
 		List<Dept> elist = null;
-		Connection conn = null;
-		PreparedStatement pstat = null;
-		ResultSet rst = null;
+
 		// 加载驱动
 		conn = getConn();
 		try {
@@ -62,9 +57,6 @@ public class DeptDaoImpl extends AbstractDao implements DeptDao {
 	@Override
 	public Dept select(Integer id) {
 		Dept dept = null;
-		Connection conn = null;
-		PreparedStatement pstat = null;
-		ResultSet rst = null;
 		// 加载驱动
 		conn = getConn();
 		try {

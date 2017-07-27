@@ -1,8 +1,5 @@
 package org.lanqiao.paging.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +7,11 @@ import java.util.List;
 import org.lanqiao.paging.dao.EmpDao;
 import org.lanqiao.paging.entity.Emp;
 
-public class EmpDaoImpl extends AbstractDao implements EmpDao {
+public class EmpDaoImpl extends AbstractDao<Emp, Integer> implements EmpDao {
 
 	@Override
 	public List<Emp> select(int pageSize, int currentPage) {
 		List<Emp> elist = null;
-		Connection conn = null;
-		PreparedStatement pstat = null;
-		ResultSet rst = null;
 		// 加载驱动
 		//conn = DBUtil.getConn();
 		conn = getConn();
@@ -65,9 +59,6 @@ public class EmpDaoImpl extends AbstractDao implements EmpDao {
 	@Override
 	public List<Emp> select() {
 		List<Emp> elist = null;
-		Connection conn = null;
-		PreparedStatement pstat = null;
-		ResultSet rst = null;
 		//conn = DBUtil.getConn();
 		conn = getConn();
 		try {
@@ -106,9 +97,6 @@ public class EmpDaoImpl extends AbstractDao implements EmpDao {
 	@Override
 	public Emp select(Integer id) {
 		Emp emp = null;
-		Connection conn = null;
-		PreparedStatement pstat = null;
-		ResultSet rst = null;
 		// 加载驱动
 		conn = getConn();
 		try {
@@ -166,6 +154,12 @@ public class EmpDaoImpl extends AbstractDao implements EmpDao {
 
 	@Override
 	public int count() {
+		return 0;
+	}
+
+	@Override
+	public int count(Emp emp) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 }

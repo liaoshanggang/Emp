@@ -9,4 +9,5 @@ public interface EmpDao extends BaseDao<Emp, Integer>{
 	/**
 	 * 获得指定条件的记录数
 	 */
+	public int count(Emp emp);
 }
