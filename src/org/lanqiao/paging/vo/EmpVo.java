@@ -11,6 +11,10 @@ public class EmpVo {
 	private String comm;
 	private String deptno;
 
+	//新增参数
+	private String beginSal;
+	private String endSal;
+	
 	public EmpVo() {
 		super();
 	}
@@ -103,5 +107,23 @@ public class EmpVo {
 	public void setDeptno(String deptno) {
 		this.deptno = deptno;
 	}
+
+	public String getBeginSal() {
+		return beginSal;
+	}
+
+	public void setBeginSal(String beginSal) {
+		this.beginSal = beginSal;
+	}
+
+	public String getEndSal() {
+		return endSal;
+	}
+
+	public void setEndSal(String endSal) {
+		this.endSal = endSal;
+	}
+	
+	
 
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.lanqiao.paging.service.EmpService;
+import org.lanqiao.paging.service.impl.EmpServiceImpl;
 import org.lanqiao.paging.vo.EmpVo;
 @SuppressWarnings("all")
 public class EmpSearchAction extends HttpServlet {
@@ -26,10 +27,20 @@ public class EmpSearchAction extends HttpServlet {
 //			EmpVo e1 = new EmpVo("张三丰"+i,"道士"+i,"张翠山"+i,"1400年12月"+(i+1)+"日","8888."+i,"无","10","20");
 //			listVO.add(e1);
 //		}
+		//从客户端获取请求参数
+		EmpVo evo = new EmpVo();
+	
+		String deptno = req.getParameter("deptno");
+		String beginSal=req.getParameter("beginSal");
+		String endSal=req.getParameter("endSal");
+		
+		evo.setDeptno(deptno);
+		evo.setBeginSal(beginSal);
+		evo.setEndSal(endSal);
 		
 		//=================从服务层获取数据库=================
 		//http://localhost:8080/paging/search.do?pageSize=10&currentPage=1
-		EmpService es = new EmpService();
+		EmpService es = new EmpServiceImpl();
 		String strPageSize = req.getParameter("pageSize");
 		String strCurrentPage = req.getParameter("currentPage");
 		int pageSize = 4;
@@ -40,7 +51,8 @@ public class EmpSearchAction extends HttpServlet {
 		if(strCurrentPage!=null){			
 			currentPage = Integer.parseInt(strCurrentPage);
 		}
-		List<EmpVo> listVO = es.query(pageSize, currentPage);
+		//List<EmpVo> listVO = es.query(pageSize, currentPage);
+		List<EmpVo> listVO=es.query(pageSize, currentPage, evo);
 		/*for (EmpVo empVo : listVO) {
 			System.out.println(empVo);
 		}*/
