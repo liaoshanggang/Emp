@@ -30,7 +30,7 @@ public class DeptDaoImpl extends AbstractDao<Dept,Integer> implements DeptDao {
 			// 获得连接
 
 			// 创建语句
-			pstat = conn.prepareStatement(DEPT_SQL_ALL);
+			pstat = conn.prepareStatement(DEPT_SQL_SELECT_ALL);
 
 			// 绑定变量
 
@@ -64,7 +64,7 @@ public class DeptDaoImpl extends AbstractDao<Dept,Integer> implements DeptDao {
 			// 获得连接
 
 			// 创建语句
-			pstat = conn.prepareStatement(DEPT_SQL_SELECT);
+			pstat = conn.prepareStatement(DEPT_SQL_SELECT_BY_ID);
 
 			// 绑定变量
 			pstat.setInt(1, id);
@@ -88,22 +88,25 @@ public class DeptDaoImpl extends AbstractDao<Dept,Integer> implements DeptDao {
 	}
 
 	@Override
-	public void insert(Dept t) {
+	public int insert(Dept t) {
+		return 0;
+	}
+
+	@Override
+	public int delete() {
+		return 0;
 
 	}
 
 	@Override
-	public void delete() {
+	public int delete(Integer id) {
+		return id;
 
 	}
 
 	@Override
-	public void delete(Integer id) {
-
-	}
-
-	@Override
-	public void update(Dept t) {
+	public int update(Dept t) {
+		return 0;
 
 	}
 

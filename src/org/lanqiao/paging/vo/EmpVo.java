@@ -123,7 +123,12 @@ public class EmpVo {
 	public void setEndSal(String endSal) {
 		this.endSal = endSal;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "EmpVo [empno=" + empno + ", ename=" + ename + ", job=" + job
+				+ ", mgr=" + mgr + ", hiredate=" + hiredate + ", sal=" + sal
+				+ ", comm=" + comm + ", deptno=" + deptno + "]";
+	}
 
 }

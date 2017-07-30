@@ -1,5 +1,6 @@
 package org.lanqiao.paging.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -171,5 +172,85 @@ public class EmpServiceImpl implements EmpService {
 		}
 
 		return evolist;
+	}
+
+	@Override
+	public int getEmpCount() {
+		return emps.size();
+	}
+
+	@Override
+	public String addEmp(EmpVo eVo) {
+		Emp t = new Emp();
+		t.setEname(eVo.getEname());
+		t.setJob(eVo.getJob());
+		t.setMgr(Integer.parseInt(eVo.getMgr()));
+		java.sql.Date sqlDate = strToSqlDate(eVo.getHiredate());
+		t.setHiredate(sqlDate);
+		t.setComm(Double.parseDouble(eVo.getComm()));
+		t.setSal(Double.parseDouble(eVo.getSal()));
+		t.setDeptno(Integer.parseInt(eVo.getDeptno()));
+
+		int flag = edao.insert(t);
+		if (flag == 1) {
+			return "success";
+		}
+		return "fail";
+	}
+
+	@Override
+	public String deleteEmpById(String idStr) {
+		int idInt = stringToInt(idStr);
+		int flag = edao.delete(idInt);
+		if (flag == 1) {
+			return "success";
+		}
+		return "fail";
+	}
+
+	@Override
+	public String updateEmp(EmpVo eVo) {
+		Emp t = new Emp();
+		t.setEmpno(Integer.parseInt(eVo.getDeptno()));
+		t.setEname(eVo.getEname());
+		t.setJob(eVo.getJob());
+		t.setMgr(Integer.parseInt(eVo.getMgr()));
+		java.sql.Date sqlDate = strToSqlDate(eVo.getHiredate());
+		t.setHiredate(sqlDate);
+		t.setComm(Double.parseDouble(eVo.getComm()));
+		t.setSal(Double.parseDouble(eVo.getSal()));
+		t.setDeptno(Integer.parseInt(eVo.getDeptno()));
+
+		int flag = edao.update(t);
+		if (flag == 1) {
+			return "success";
+		}
+		return "fail";
+	}
+
+	public java.sql.Date strToSqlDate(String dateStringToParse) {
+		SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		java.sql.Date sqlDate = null;
+		try {
+			java.util.Date date = bartDateFormat.parse(dateStringToParse);
+			sqlDate = new java.sql.Date(date.getTime());
+			System.out.println(sqlDate.getTime());
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return sqlDate;
+	}
+
+	private int stringToInt(String str) {
+
+		int result = -1;
+		try {
+			result = Integer.valueOf(str);
+		} catch (NumberFormatException e) {
+			// Logger.error(str+": 转型异常"+ e.getMessage());
+			System.out.println(e.getMessage());
+		}
+
+		return result;
 	}
 }

@@ -41,24 +41,24 @@ public interface BaseDao<T, PK extends Serializable> {
 	 * 新增一个对象
 	 * @param t
 	 */
-	public void insert(T t);
+	public int insert(T t);
 
 	/**
 	 * 删除一个对象
 	 */
-	public void delete();
+	public int delete();
 
 	/**
 	 * 根据id删除一个对象
 	 * @param id
 	 */
-	public void delete(PK id);
+	public int delete(PK id);
 
 	/**
 	 * 更新对象
 	 * @param t
 	 */
-	public void update(T t);
+	public int update(T t);
 
 	/**
 	 * 

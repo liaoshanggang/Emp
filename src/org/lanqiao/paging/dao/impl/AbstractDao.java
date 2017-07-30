@@ -51,20 +51,20 @@ public abstract class AbstractDao<T, PK extends Serializable> implements BaseDao
 		return null;
 	}
 	@Override
-	public void insert(T t) {
-		
+	public int insert(T t) {
+		return -1;
 	}
 	@Override
-	public void delete() {
-		
+	public int delete() {
+		return -1;
 	}
 	@Override
-	public void delete(PK id) {
-		
+	public int delete(PK id) {
+		return -1;
 	}
 	@Override
-	public void update(T t) {
-		
+	public int update(T t) {
+		return -1;
 	}
 	@Override
 	public int count() {
